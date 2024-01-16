@@ -886,13 +886,45 @@ switch($db_data['status']){
 		
 		<div class="form-control">
 			<label><?=lang('Note', 'ملاحظات', 1); ?></label>
-<input type="text" class="data-input" req="0" defaulter="" denier="" alerter="please check inputs" name="note">
+			<input type="text" class="data-input" req="0" defaulter="" denier="" alerter="please check inputs" name="note">
 		</div>
+
 		<br>
 		<br>
 		<div class="form-control">
 			<button type="button" onclick="URLer = '<?=api_root; ?>patients/insert_payment.php';redirecter = 'close_modal';submit_form('profile_new_payment_form');"><?=lang('add_payment', 'إضافة الدفعة', 1); ?></button>
 		</div>
+		<br>
+		<br>
+		<?php
+		// *************Tawfiq passed by here****************
+			$Q13 = "SELECT * FROM `patients_procedures` WHERE ( ( `patient_id` = ".$patient_id."  ) AND ( `clinic_id` = ".$_SESSION['clinic_id']." ) ) ORDER BY date_time DESC";
+
+			$QEXE13 = mysqli_query($KONN, $Q13);
+
+
+			$totla_dbPay = $totla_dbPay + $dbPay;
+			foreach ($QEXE13 as $key => $pat) {
+				// *********
+				$Q14 = "SELECT * FROM `patients_payments` WHERE ( ( `patient_id` = ".$patient_id."  ) AND ( `clinic_id` = ".$_SESSION['clinic_id']." ) )";
+				$total_payss = 0;
+				$QEXE14 = mysqli_query($KONN, $Q14);
+				foreach ($QEXE14 as $key => $value) {
+					$pay = (double) $value['payment_amount'];
+					$total_payss = $total_payss + $pay;
+					
+				}
+				
+				// *************
+
+				$totla_price =  ($pat['price'] * $pat['qty']) - $total_payss;
+			}
+			//. *************Tawfiq passed by here****************
+		 ?>
+		<div class="form-control">
+				<h2><?=lang('Remaining amount', 'المبلغ المتبقي', 1); ?></h2>
+				<p style="font-size: 22px;font-weight: bold;color: red;"><?=$totla_price?></p>
+			</div>
 	</form>
 	<br>
 	<hr>
@@ -1015,7 +1047,7 @@ $toter=0;
 		$q = "SELECT * FROM `patients_procedures` WHERE ( ( `patient_id` = ".$patient_id."  ) AND ( `clinic_id` = ".$_SESSION['clinic_id']." ) ) ORDER BY date_time DESC";
 		$q_exe = mysqli_query($KONN, $q);
 			while($db_data = mysqli_fetch_assoc($q_exe)){
-				$thsP = (double) $db_data['qty'];
+				$thsP = (double) $db_data['price'];
 				$thsQ = (double) $db_data['qty'];
 				$thsTot = $thsQ * $thsP;
 				$toter = $toter + $thsTot;

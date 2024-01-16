@@ -146,10 +146,11 @@ if( $EMP_LEVEL == 2 ){
 						<img src="<?=icons_root.'clin_settings.png'; ?>" alt="main logo">
 						<span><?=lang('clinic_settings', 'اعدادت العيادة', 1); ?></span>
 				</a></li>
-				<li <?php if($page_id == 457){echo ' class="active"';} ?>><a href="system_settings.php">
+				<!-- *************Tawfiq passed by here**************** -->
+				<!-- <li <?php if($page_id == 457){echo ' class="active"';} ?>><a href="system_settings.php">
 						<img src="<?=icons_root.'sys_set.png'; ?>" alt="main logo">
 						<span><?=lang('system_settings', 'اعدادات النظام', 1); ?></span>
-				</a></li>
+				</a></li> -->
 				<li <?php if($page_id == 458){echo ' class="active"';} ?>><a href="patients_payments.php">
 						<img src="<?=icons_root.'invoices.png'; ?>" alt="main logo">
 						<span><?=lang('patients_payments', 'دفعات المرضى', 1); ?></span>

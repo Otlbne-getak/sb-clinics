@@ -276,7 +276,8 @@ $('#dober').on('change', function(){
 				
 				
 				<br>
-<button type="button" onclick="URLer = '<?=api_root; ?>employee/update_employee_basic_info.php';redirecter = 'close_modal';submit_form('edit_employee_data');"><?=lang('save_changes'); ?></button>
+				<!-- *************Tawfiq passed by here (add window.location.reload())**************** -->
+<button type="button" onclick="URLer = '<?=api_root; ?>employee/update_employee_basic_info.php';redirecter = 'close_modal';submit_form('edit_employee_data');window.location.reload()"><?=lang('save_changes'); ?></button>
 		
 				
 </form>
@@ -333,7 +334,8 @@ $('#dober').on('change', function(){
 				
 			
 				<br>
-<button type="button" onclick="URLer = '<?=api_root; ?>employee/update_employee_contact_info.php';redirecter = 'close_modal';submit_form('emp_contact_details_form');"><?=lang('save_changes'); ?></button>
+				<!-- *************Tawfiq passed by here (add window.location.reload())**************** -->
+<button type="button" onclick="URLer = '<?=api_root; ?>employee/update_employee_contact_info.php';redirecter = 'close_modal';submit_form('emp_contact_details_form');window.location.reload()"><?=lang('save_changes'); ?></button>
 		
 				
 </form>
@@ -438,7 +440,8 @@ $('#dober').on('change', function(){
 				
 			
 				<br>
-<button type="button" onclick="URLer = '<?=api_root; ?>employee/update_employee_address_info.php';redirecter = 'close_modal';submit_form('emp_address_details_form');"><?=lang('save_changes'); ?></button>
+				<!-- *************Tawfiq passed by here (add window.location.reload())**************** -->
+<button type="button" onclick="URLer = '<?=api_root; ?>employee/update_employee_address_info.php';redirecter = 'close_modal';submit_form('emp_address_details_form');window.location.reload()"><?=lang('save_changes'); ?></button>
 		
 		
 </form>
@@ -494,7 +497,8 @@ if(mysqli_num_rows($aur_exe) > 0){
 				
 			
 				<br>
-<button type="button" onclick="URLer = '<?=api_root; ?>employee/update_employee_creds.php';redirecter = 'close_modal';submit_form('emp_sys_cred_details_form');"><?=lang('save_changes'); ?></button>
+				<!-- *************Tawfiq passed by here (add window.location.reload())**************** -->
+<button type="button" onclick="URLer = '<?=api_root; ?>employee/update_employee_creds.php';redirecter = 'close_modal';submit_form('emp_sys_cred_details_form'); window.location.reload()"><?=lang('save_changes'); ?></button>
 		
 		
 </form>
@@ -558,7 +562,8 @@ if($NUM_REC > 0){
 				
 				
 				<br>
-<button type="button" onclick="URLer = '<?=api_root; ?>employee/update_employee_financial_info.php';redirecter = 'close_modal';submit_form('edit_employee_financials');"><?=lang('save_changes'); ?></button>
+				<!-- *************Tawfiq passed by here (add window.location.reload())**************** -->
+<button type="button" onclick="URLer = '<?=api_root; ?>employee/update_employee_financial_info.php';redirecter = 'close_modal';submit_form('edit_employee_financials');window.location.reload()"><?=lang('save_changes'); ?></button>
 		
 				
 </form>
@@ -638,7 +643,8 @@ $emp_db = mysqli_fetch_array($QEXE1);
 		</div>
 		<br>
 		<div class="form-control">
-			<button type="button" onclick="URLer = '<?=api_root; ?>employee/upload_media.php';redirecter = 'close_modal';submit_form('emp_new_media_form');"><?=lang('upload_media', 'تحميل', 1); ?></button>
+			<!-- *************Tawfiq passed by here (add window.location.reload())**************** -->
+			<button type="button" onclick="URLer = '<?=api_root; ?>employee/upload_media.php';redirecter = 'close_modal';submit_form('emp_new_media_form');window.location.reload()"><?=lang('upload_media', 'تحميل', 1); ?></button>
 		</div>
 	
 	

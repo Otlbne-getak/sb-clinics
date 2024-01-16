@@ -152,6 +152,7 @@ function printDiv() {
 			<td><?=lang('date', 'التاريخ', 1); ?></td>
 			<td><?=lang('note', 'ملاحظات', 1); ?></td>
 			<td><?=lang('Payemnt Amount', 'الدفعة', 1); ?></td>
+			<td><?=lang('Remaining amount', 'المبلغ المتبقي', 1); ?></td>
 			<td><?=lang('Payemnt Type', 'طريقة الدفع', 1); ?></td>
 		</tr>
 	</thead>
@@ -159,11 +160,13 @@ function printDiv() {
 <?php
 		
 		
-		$q = "SELECT * FROM `patients_payments` WHERE ( ( `clinic_id` = ".$_SESSION['clinic_id']." ) $qCond ) ORDER BY date_time DESC";
+		$q = "SELECT * FROM `patients_payments` WHERE ( ( `clinic_id` = ".$_SESSION['clinic_id']." ) $qCond )";
 		$q_exe = mysqli_query($KONN, $q);
+
 		if(mysqli_num_rows($q_exe) > 0){
 			$rrr = 0;
 			$pays = 0;
+			$totla_price = 0;
 			while($db_data = mysqli_fetch_assoc($q_exe)){
 				$rrr++;
 $Q1 = "SELECT CONCAT(`first_name`, ' ', `last_name`) AS namer FROM `clinics_employees` WHERE ( (`employee_id` = ".$db_data['reciepent'].") AND (`clinic_id` = ".$_SESSION['clinic_id'].") )";
@@ -191,6 +194,29 @@ if( $typo == 1 ){
 }
 $dbPay = (double) $db_data['payment_amount'];
 $pays = $pays + $dbPay;
+
+// *************Tawfiq passed by here****************
+$Q13 = "SELECT * FROM `patients_procedures` WHERE ( ( `patient_id` = ".$db_data['patient_id']."  ) AND ( `clinic_id` = ".$_SESSION['clinic_id']." ) ) ORDER BY date_time DESC";
+
+$QEXE13 = mysqli_query($KONN, $Q13);
+
+
+$totla_dbPay = $totla_dbPay + $dbPay;
+foreach ($QEXE13 as $key => $pat) {
+
+	// $Q14 = "SELECT * FROM `patients_payments` WHERE ( ( `patient_id` = ".$db_data['patient_id']."  ) AND ( `clinic_id` = ".$_SESSION['clinic_id']." ) )";
+	// $total_payss = 0;
+	// $QEXE14 = mysqli_query($KONN, $Q14);
+	// foreach ($QEXE14 as $key => $value) {
+	// 	$pay = (double) $value['payment_amount'];
+	// 	$total_payss = $total_payss + $pay;
+
+	// }
+	
+
+	$totla_price =  ($pat['price'] * $pat['qty']) - $pays;
+	//. *************Tawfiq passed by here****************
+}
 ?>
 		<tr>
 			<td><?=$rrr; ?></td>
@@ -199,6 +225,7 @@ $pays = $pays + $dbPay;
 			<td><?=$db_data['date_time']; ?></td>
 			<td><?=$db_data['note']; ?></td>
 			<td><?=$dbPay; ?></td>
+			<td><?=$totla_price ?></td>
 			<td><?=$typer; ?></td>
 		</tr>
 <?php

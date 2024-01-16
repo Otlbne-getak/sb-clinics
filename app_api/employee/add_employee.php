@@ -40,10 +40,13 @@ if( isset($_POST['first_name']) &&
 	$graduation_date = test_inputs($_POST['graduation_date']);
 	$duty_start = test_inputs($_POST['duty_start']);
 	$duty_end = test_inputs($_POST['duty_end']);
-	
-	
+	// *************Tawfiq passed by here****************
+	$title = $is_dr == 1 ? 'Dr' : 'mr';
+	//. *************Tawfiq passed by here****************
 
+	// *************Tawfiq passed by here (add title to array)****************
 	$qu_clinics_employees_ins = "INSERT INTO `clinics_employees` (
+						`title`,
 						`first_name`, 
 						`second_name`, 
 						`third_name`, 
@@ -61,6 +64,7 @@ if( isset($_POST['first_name']) &&
 						`is_dr`, 
 						`clinic_id` 
 					) VALUES (
+						'".$title."', 
 						'".$first_name."', 
 						'".$second_name."', 
 						'".$third_name."', 

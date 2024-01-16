@@ -35,6 +35,7 @@ $QEXE1 = mysqli_query($KONN, $Q1);
 $proc_db = mysqli_fetch_array($QEXE1);
 $procedure_name = $proc_db[0];
 
+
 	$q = "INSERT INTO `patients_teeth_proc` (
 		`patient_id`, 
 		`teeth_no`, 
@@ -56,10 +57,42 @@ $procedure_name = $proc_db[0];
 		'$registerer',  
 		'".$_SESSION['clinic_id']."'
 		);";
-	
+
 	if(mysqli_query($KONN, $q)){
+
+		// *************Tawfiq passed by here****************
 		
-		die('1|'.lang('Selected_Procedure_Inserted'));
+		$Q1 = "SELECT * FROM `clinics_procedures` WHERE ( (`procedure_id` = ".$proc_id.") AND (`clinic_id` = ".$_SESSION['clinic_id'].") )";
+		$QEXE2 = mysqli_query($KONN, $Q1);
+		$proc_db = mysqli_fetch_assoc($QEXE2);
+		$procedure_name = $proc_db['procedure_name'];
+		$procedure_price = $proc_db['price'];
+
+		$q = "INSERT INTO `patients_procedures` (
+		`procedure_name`, 
+		`qty`, 
+		`price`, 
+		`note`, 
+		`date_time`, 
+		`dr_id`, 
+		`patient_id`, 
+		`clinic_id`
+		) VALUES (
+		'$procedure_name', 
+		'1', 
+		'$procedure_price', 
+		'$note', 
+		'$date_time', 
+		'$dr_id', 
+		'$patient_id', 
+		'".$_SESSION['clinic_id']."'
+		);";
+
+		//. *************Tawfiq passed by here****************
+
+		if(mysqli_query($KONN, $q)){// *************Tawfiq passed by here****************
+			die('1|'.lang('Selected_Procedure_Inserted'));
+		}// *************Tawfiq passed by here****************
 	
 	} else {
 			die('0|ERROR no : js94sdds0');
